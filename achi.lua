@@ -56,7 +56,7 @@ dataModule["Matcher"] = {
 	end
 }
 
-dataModule["Rebound"] = {
+dataModule["ReboundE"] = {
 	GetInfo = function()
 		return {
 			Title = "I always come back.",
