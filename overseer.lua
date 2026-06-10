@@ -78,8 +78,10 @@ task.spawn(function()
 			continue
 		end
 		
+		-- Check if Overseer eyes are ON screen (player is looking at them)
 		local isOnScreen = workspace.CurrentCamera:WorldToScreenPoint(eyes.Position)
 		
+		-- DAMAGE WHEN NOT LOOKING (looking away = damage)
 		if not isOnScreen then
 			local character = v.Character
 			if character and character:FindFirstChild("Humanoid") then
@@ -100,15 +102,19 @@ task.spawn(function()
 						no = true
 						
 						-- Death hint
-						while game["Run Service"].RenderStepped:Wait() do
-							if firesignal then
-								firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {
-									"You died to Overseer.",
-									"It only strikes when you're not watching.",
-									"Keep your eyes on it or hide!"
-								}, "Yellow")
+						task.spawn(function()
+							while humanoid.Health <= 0 do
+								game["Run Service"].RenderStepped:Wait()
+								if firesignal then
+									firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {
+										"You died to Overseer.",
+										"It strikes when you look away.",
+										"Keep staring at it to survive!"
+									}, "Yellow")
+								end
+								break
 							end
-						end
+						end)
 					end
 				end
 			end
