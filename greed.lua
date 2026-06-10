@@ -34,6 +34,7 @@ game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
     local hum = char and char:FindFirstChild("Humanoid")
     
     if hum and hum.Health > 0 then
+        if workspace:FindFirstChild("RushMoving") then return end
         hum:TakeDamage(100)
         ded = true
         
