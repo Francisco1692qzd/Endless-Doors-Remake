@@ -105,6 +105,7 @@ spawn(function()
 				end)
 				wait(0.35)
 				v.Character.Humanoid:TakeDamage(125)
+				game.ReplicatedStorage.GameStats["Player_".. v.Character.Name].Total.DeathCause.Value = "Matcher"
 				while v.Character.Humanoid.Health <= 0 do
 					game["Run Service"].RenderStepped:Wait()
 					if firesignal then
