@@ -74,9 +74,9 @@ task.spawn(function()
 			continue
 		end
 
-		if workspace:FindFirstChild("Lookman") or workspace:FindFirstChild("Eyes") then
+		--[[if workspace:FindFirstChild("Lookman") or workspace:FindFirstChild("Eyes") then
 			continue
-		end
+		end--]]
 		
 		-- Check if Overseer eyes are ON screen (player is looking at them)
 		local isOnScreen = workspace.CurrentCamera:WorldToScreenPoint(eyes.Position)
