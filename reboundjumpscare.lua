@@ -1,5 +1,57 @@
     -- UI Construction
 
+    local G = getgenv()
+    
+G.LoadGithubModel = function(url)
+    if not (writefile and getcustomasset and request) then
+        return nil
+    end
+    
+    -- Generate a consistent filename based on the URL
+    local function generateFileName(url)
+        -- Create a simple hash from the URL
+        local hash = 0
+        for i = 1, #url do
+            hash = (hash * 31 + string.byte(url, i)) % 2^32
+        end
+        return "reboundff_" .. tostring(hash) .. ".rbxm"
+    end
+    
+    local fileName = generateFileName(url)
+    
+    -- Check if file already exists
+    local fileExists = false
+    local success, exists = pcall(function()
+        return isfile and isfile(fileName)
+    end)
+    
+    if success and exists then
+        fileExists = true
+        -- Try to load existing model first
+        local assetId = getcustomasset(fileName)
+        local loadSuccess, result = pcall(function()
+            return game:GetObjects(assetId)[1]
+        end)
+        
+        if loadSuccess and result then
+            return result
+        end
+    end
+    
+    -- If file doesn't exist or loading failed, download new one
+    local response = request({Url = url, Method = "GET"})
+    if response.StatusCode ~= 200 then return nil end
+    
+    writefile(fileName, response.Body)
+    local assetId = getcustomasset(fileName)
+    local success, result = pcall(function()
+        return game:GetObjects(assetId)[1]
+    end)
+    
+    if success and result then return result end
+    return nil
+end
+    
     local JumpscareGui = Instance.new("ScreenGui")
     local Background = Instance.new("Frame")
     local Face = Instance.new("ImageLabel")
@@ -25,16 +77,17 @@
 
     Background.Parent = JumpscareGui
     Face.Parent = Background
+    local lowkey = G.LoadGithubAudio("https://raw.githubusercontent.com/Francisco1692qzd/RevivedOldHardcore/main/JumpscareReb.mp3")
 local scare = Instance.new("Sound")
 scare.Parent = JumpscareGui
 scare.Name = "MyEarsBurn"
-scare.SoundId = "rbxassetid://5567523008"
-scare.PlaybackSpeed = 3
+scare.SoundId = lowkey
+scare.PlaybackSpeed = 1
 scare.Volume = 3
 
-local shift = Instance.new("PitchShiftSoundEffect")
+--[[local shift = Instance.new("PitchShiftSoundEffect")
 shift.Octave = 0.5
-shift.Parent = scare
+--shift.Parent = scare
 
 local distort = Instance.new("DistortionSoundEffect")
 distort.Parent = scare
@@ -44,7 +97,7 @@ local eq = Instance.new("EqualizerSoundEffect")
 eq.HighGain = 10
 eq.MidGain = 10
 eq.LowGain = 3.7
-eq.Parent = scare
+eq.Parent = scare--]]
     
         task.spawn(function()
             while JumpscareGui.Parent do
