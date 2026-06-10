@@ -2,6 +2,10 @@ if workspace:FindFirstChild("SeekMovingNewClone") or workspace:FindFirstChild("S
     return
 end
 
+if workspace:FindFirstChild("RushMoving") then
+    return
+end
+
 local ded = false
 local gone = false
 local player = game.Players.LocalPlayer
