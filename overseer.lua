@@ -112,7 +112,7 @@ task.spawn(function()
 										"Keep staring at it to survive!"
 									}, "Yellow")
 								end
-								break
+								--break
 							end
 						end)
 					end
