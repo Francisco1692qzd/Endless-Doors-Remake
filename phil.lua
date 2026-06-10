@@ -149,3 +149,17 @@ if roomValue < 90 then
         end
     end
 end
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Wait()
+wait(1)
+local AchievementModule = game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.AchievementUnlock
+if AchievementModule == nil then return end
+if workspace:FindFirstChild("PhilAchievement") then return end
+if not game.ReplicatedStorage:FindFirstChild("ModulesShared") then return end
+local dataModule = require(game:GetService("ReplicatedStorage"):WaitForChild("ModulesShared"):WaitForChild("Achievements"))
+local unlockFunc = require(AchievementModule)
+unlockFunc(nil, "Phil")
+local ObtainedBadge = Instance.new("BoolValue")
+ObtainedBadge.Name = "PhilAchievement"
+ObtainedBadge.Value = true
+ObtainedBadge.Parent = workspace
