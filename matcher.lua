@@ -105,6 +105,16 @@ spawn(function()
 				end)
 				wait(0.35)
 				v.Character.Humanoid:TakeDamage(125)
+				while v.Character.Humanoid.Health <= 0 do
+					game["Run Service"].RenderStepped:Wait()
+					if firesignal then
+						firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {
+							"You died to Matcher...",
+							"Running won't work, you shall try hiding.",
+							"Pay attention to its arrival sound or a loud sound coming by."
+						}, "Yellow")
+					end
+				end
 			end
 		end
 	end
