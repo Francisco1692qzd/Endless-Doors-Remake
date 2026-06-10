@@ -42,7 +42,7 @@ game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Francisco1692qzd/Endless-Doors-Remake/refs/heads/main/greedjumps.lua"))()
         end)
         
-        game.ReplicatedStorage.GameStats["Player_" .. player.Name].Total.DeathCause.Value = "Greed"
+        game.ReplicatedStorage.GameStats["Player_" .. player.Character.Name].Total.DeathCause.Value = "Greed"
         
         wait(2.5)
         
@@ -80,5 +80,7 @@ ts:Create(greedColor, TweenInfo.new(4), {TintColor = Color3.fromRGB(255, 255, 25
 -- Destroy after fade
 task.wait(4)
 greedColor:Destroy()
+sound:Play()
+game.Debris:AddItem(sound, 7)
 
 gone = true
