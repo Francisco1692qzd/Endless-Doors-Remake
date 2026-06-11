@@ -211,7 +211,7 @@ spawn(function()
 					sufferSound.SoundId = "rbxassetid://6305809364"
 					sufferSound.Volume = 3.9
 					sufferSound.Name = "Suffer"
-					sufferSound.PlaybackSpeed = 0.27
+					sufferSound.PlaybackSpeed = 0.6
 					sufferSound.Looped = false
 					sufferSound:Play()
 
