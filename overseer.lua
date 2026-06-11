@@ -194,7 +194,7 @@ task.spawn(function()
         local lookingAtEyes = isOnScreen(eyes.Position)
         
         -- ONLY damage when NOT looking
-        if not lookingAtEyes then
+        if not lookingAtEyes and humanoid.Health > 0 then
             camShake:ShakeOnce(5, 15, 0.1, 1)
             
             -- CRUCIFIX REPENTANCE LOGIC
