@@ -163,7 +163,7 @@ spawn(function()
 					end
 
 					if matcher then
-						repentanceModel:PivotTo(matcher.CFrame * CFrame.new(0, -3.7, 0))
+						repentanceModel:PivotTo(matcher.CFrame * CFrame.new(0, -4.3, 0))
 					end
 
 					local crucifix = repentanceModel.Crucifix
@@ -424,7 +424,7 @@ for i = 1, game.ReplicatedStorage.GameData.LatestRoom.Value + 1 do
 					if crucifixActive then break end
 					local waypoint = nodes[v]
 					local distance = (matcher.Position - waypoint.Position).magnitude
-					local tween = game.TweenService:Create(matcher, TweenInfo.new(GetTime(distance, speed), Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0,false,0), {CFrame = waypoint.CFrame + Vector3.new(0,1.4,0)})
+					local tween = game.TweenService:Create(matcher, TweenInfo.new(GetTime(distance, speed), Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0,false,0), {CFrame = waypoint.CFrame + Vector3.new(0,2.5,0)})
 					tween:Play()
 					tween.Completed:Wait()
 					speed = storer
