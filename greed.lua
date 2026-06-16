@@ -45,6 +45,16 @@ game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
         end)
         
         game.ReplicatedStorage.GameStats["Player_" .. player.Character.Name].Total.DeathCause.Value = "Greed"
+
+        while game["Run Service"].RenderStepped:Wait() do
+            if firesignal then
+                firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {
+                    "You died to... Greed...",
+                    "... It's a basic entity, just...",
+                    "Just don't... open the door while the ambient light seems... different."
+                }, "Curious")
+            end
+        end
         
         wait(2.5)
         
