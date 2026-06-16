@@ -26,6 +26,8 @@ if character and character:FindFirstChild("Humanoid") and character.Humanoid.Hea
     ded = true
 end
 
+wait(0.5)
+
 -- Death trigger
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
     if gone or ded then return end
